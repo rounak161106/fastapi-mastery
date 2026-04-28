@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Path, HTTPException
+#path is used to perform, validation, adding description to the api documentation
 import json
 
 app = FastAPI()
@@ -21,8 +22,8 @@ def view():
     return get_data()
 
 @app.get('/view/{id}')
-def view_id(id):
+def view_id(id = Path(..., description="Id of the patient in the DB", example="P001")):
     data = get_data()
     if id in data:
         return data[id]
-    return {'Message' : "Record not found!!"}
+    raise HTTPException(status_code=404, detail="Patient not found")
