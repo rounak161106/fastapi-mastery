@@ -1,0 +1,7 @@
+{
+    "P001" : {"name" : "Rounak", "city" : "Delhi", "age" : 18, "gender" : "M", "height" : 5.5, "weight" : 65, "BMI" : 33.06}, 
+    "P002" : {"name" : "Tanya", "city" : "Mumbai", "age" : 28, "gender" : "F", "height" : 5.2, "weight" : 70, "BMI" : 63.75}, 
+    "P003" : {"name" : "Jay", "city" : "Kolkata", "age" : 15, "gender" : "M", "height" : 6.0, "weight" : 65, "BMI" : 83.66}, 
+    "P004" : {"name" : "Aditya", "city" : "Chennai", "age" : 27, "gender" : "M", "height" : 6.1, "weight" : 76, "BMI" : 37.44}, 
+    "P005" : {"name" : "Radhika", "city" : "Jaipur", "age" : 32, "gender" : "F", "height" : 5, "weight" : 70, "BMI" : 78.73}
+}
