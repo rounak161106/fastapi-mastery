@@ -19,3 +19,10 @@ def about():
 @app.get('/view')
 def view():
     return get_data()
+
+@app.get('/view/{id}')
+def view_id(id):
+    data = get_data()
+    if id in data:
+        return data[id]
+    return {'Message' : "Record not found!!"}
