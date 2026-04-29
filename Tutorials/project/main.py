@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Path, HTTPException
+from fastapi import FastAPI, Path, HTTPException, Query
 #path is used to perform, validation, adding description to the api documentation
 import json
 
@@ -29,4 +29,6 @@ def view_id(id = Path(..., description="Id of the patient in the DB", example="P
     raise HTTPException(status_code=404, detail="Patient not found")
 
 @app.get('/sort')
-def sort_patients()
+def sort_patients(sortby : str = Query(..., description = "Sort on the basis of height, weight or bmi"), order: str = Query(description = 'Specify the order asc or desc')):
+    data = get_data()
+    return data
