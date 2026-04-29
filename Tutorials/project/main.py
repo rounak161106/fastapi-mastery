@@ -27,3 +27,6 @@ def view_id(id = Path(..., description="Id of the patient in the DB", example="P
     if id in data:
         return data[id]
     raise HTTPException(status_code=404, detail="Patient not found")
+
+@app.get('/sort')
+def sort_patients()
