@@ -29,6 +29,13 @@ def view_id(id = Path(..., description="Id of the patient in the DB", example="P
     raise HTTPException(status_code=404, detail="Patient not found")
 
 @app.get('/sort')
-def sort_patients(sortby : str = Query(..., description = "Sort on the basis of height, weight or bmi"), order: str = Query(description = 'Specify the order asc or desc')):
+def sort_patients(sortby : str = Query(..., description = "Sort on the basis of height, weight or bmi"), order: str = Query("asc", description = 'Specify the order asc or desc')):
     data = get_data()
-    return data
+    valid = ['height', 'weight', 'BMI']
+    if sortby not in valid:
+        raise HTTPException(status_code=400, detail=f"Select valid option from {valid}")
+    if order not in ['asc', 'desc']:
+        raise HTTPException(status_code=400, detail='Select either asc or desc')
+    order = True if order == "desc" else False
+    sorted_data = sorted(data.values(), key = lambda x : x[sortby], reverse=order)
+    return sorted_data
