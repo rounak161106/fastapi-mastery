@@ -36,6 +36,6 @@ def sort_patients(sortby : str = Query(..., description = "Sort on the basis of 
         raise HTTPException(status_code=400, detail=f"Select valid option from {valid}")
     if order not in ['asc', 'desc']:
         raise HTTPException(status_code=400, detail='Select either asc or desc')
-    order = True if order == "desc" else False
+    order = True if order == "desc" else False  
     sorted_data = sorted(data.values(), key = lambda x : x[sortby], reverse=order)
     return sorted_data
