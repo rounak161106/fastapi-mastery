@@ -1,7 +1,102 @@
 {
-    "P001" : {"name" : "Rounak", "city" : "Delhi", "age" : 18, "gender" : "M", "height" : 5.5, "weight" : 65, "BMI" : 33.06}, 
-    "P002" : {"name" : "Tanya", "city" : "Mumbai", "age" : 28, "gender" : "F", "height" : 5.2, "weight" : 70, "BMI" : 63.75}, 
-    "P003" : {"name" : "Jay", "city" : "Kolkata", "age" : 15, "gender" : "M", "height" : 6.0, "weight" : 65, "BMI" : 83.66}, 
-    "P004" : {"name" : "Aditya", "city" : "Chennai", "age" : 27, "gender" : "M", "height" : 6.1, "weight" : 76, "BMI" : 37.44}, 
-    "P005" : {"name" : "Radhika", "city" : "Jaipur", "age" : 32, "gender" : "F", "height" : 5, "weight" : 70, "BMI" : 78.73}
+    "P001": {
+        "name": "Rounak",
+        "city": "Delhi",
+        "age": 18,
+        "gender": "M",
+        "height": 1.75,
+        "weight": 65,
+        "BMI": 21.22,
+        "verdict": "Normal"
+    },
+    "P002": {
+        "name": "Tanya",
+        "city": "Mumbai",
+        "age": 28,
+        "gender": "F",
+        "height": 1.60,
+        "weight": 70,
+        "BMI": 27.34,
+        "verdict": "Overweight"
+    },
+    "P003": {
+        "name": "Jay",
+        "city": "Kolkata",
+        "age": 15,
+        "gender": "M",
+        "height": 1.82,
+        "weight": 65,
+        "BMI": 19.62,
+        "verdict": "Normal"
+    },
+    "P004": {
+        "name": "Aditya",
+        "city": "Chennai",
+        "age": 27,
+        "gender": "M",
+        "height": 1.85,
+        "weight": 92,
+        "BMI": 26.88,
+        "verdict": "Overweight"
+    },
+    "P005": {
+        "name": "Radhika",
+        "city": "Jaipur",
+        "age": 32,
+        "gender": "F",
+        "height": 1.55,
+        "weight": 70,
+        "BMI": 29.14,
+        "verdict": "Overweight"
+    },
+    "P006": {
+        "name": "Aman",
+        "city": "Pune",
+        "age": 24,
+        "gender": "M",
+        "height": 1.78,
+        "weight": 58,
+        "BMI": 18.31,
+        "verdict": "Underweight"
+    },
+    "P007": {
+        "name": "Sneha",
+        "city": "Hyderabad",
+        "age": 30,
+        "gender": "F",
+        "height": 1.68,
+        "weight": 62,
+        "BMI": 21.97,
+        "verdict": "Normal"
+    },
+    "P008": {
+        "name": "Karan",
+        "city": "Lucknow",
+        "age": 40,
+        "gender": "M",
+        "height": 1.72,
+        "weight": 105,
+        "BMI": 35.49,
+        "verdict": "Obesity"
+    },
+    "P009": {
+        "name": "Meera",
+        "city": "Bangalore",
+        "age": 22,
+        "gender": "F",
+        "height": 1.70,
+        "weight": 50,
+        "BMI": 17.30,
+        "verdict": "Underweight"
+    },
+    "P010": {
+        "name": "Vikram",
+        "city": "Ahmedabad",
+        "age": 35,
+        "gender": "M",
+        "height": 1.80,
+        "weight": 78,
+        "BMI": 24.07,
+        "verdict": "Normal"
+    }
 }

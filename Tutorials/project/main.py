@@ -1,24 +1,35 @@
 from fastapi import FastAPI, Path, HTTPException, Query #path is used to perform, validation, adding description to the api documentation(similarly the query)
-from pydantic import BaseModel, computed_field
-from typing import Annotated
+from pydantic import BaseModel, computed_field, Field
+from typing import Annotated, Literal
 import json
 
 app = FastAPI()
 
 class Patient(BaseModel):
-    id : str
-    name : str
-    city : str
-    age : int
-    gender : str
-    height : float
-    weight : float
+    id : Annotated[str, Field(...,description="Id of the patient", examples=['P001'])]
+    name : Annotated[str, Field(..., description="Name of the patient", examples=['xyz'])]
+    city : Annotated[str, Field(..., description="City of the patient", examples=['Barbil'])]
+    age : Annotated[int, Field(..., description="Age of the patient", examples=19, gt=0, lt=120)]
+    gender : Annotated[Literal['Male', 'Female', 'Others'], Field(..., description="Gender of the patient")]
+    height : Annotated[float, Field(...,gt=0, description="Height of the patient(in metres)", examples=['xyz'])]
+    weight : Annotated[float, Field(...,gt=0, description="Weight of the patient(in kgs)", examples=65.6)]
 
     @computed_field
     @property
-    def bmi(self):
-        return self.weight / (self.height**2)
+    def bmi(self) -> float:
+        return round(self.weight / (self.height**2),2)
         
+    @computed_field
+    @property
+    def verdict(self):
+        if self.bmi < 18.5:
+            return "Underweight"
+        elif self.bmi < 25:
+            return "Normal"
+        elif self.bmi < 30:
+            return "Overweight"
+        else:
+            return "Obesity"
 
 def get_data():
     with open('patients_data.json', 'r') as f:
@@ -40,14 +51,14 @@ def veeiew():
     return get_data()
 
 @app.get('/view/{id}')
-def view_id(id = Path(..., description="Id of the patient in the DB", example="P001")):
+def view_id(id = Path(..., description="Id of the patient in the DB", examples=["P001"])):
     data = get_data()
     if id in data:
         return data[id]
     raise HTTPException(status_code=404, detail="Patient not found")
 
 @app.get('/sort')
-def sort_patients(sortby : str = Query(...,description = "Sort on the basis of height, weight or bmi", example='height'), order: str = Query("asc", description = 'Specify the order asc or desc')):
+def sort_patients(sortby : str = Query(...,description = "Sort on the basis of height, weight or bmi", examples=['height']), order: str = Query("asc", description = 'Specify the order asc or desc')):
     data = get_data()
     valid = ['height', 'weight', 'BMI']
     if sortby not in valid:
