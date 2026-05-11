@@ -9,10 +9,10 @@ class Patient(BaseModel):
     id : Annotated[str, Field(...,description="Id of the patient", examples=['P001'])]
     name : Annotated[str, Field(..., description="Name of the patient", examples=['xyz'])]
     city : Annotated[str, Field(..., description="City of the patient", examples=['Barbil'])]
-    age : Annotated[int, Field(..., description="Age of the patient", examples=19, gt=0, lt=120)]
+    age : Annotated[int, Field(..., description="Age of the patient", examples=[19], gt=0, lt=120)]
     gender : Annotated[Literal['Male', 'Female', 'Others'], Field(..., description="Gender of the patient")]
-    height : Annotated[float, Field(...,gt=0, description="Height of the patient(in metres)", examples=['xyz'])]
-    weight : Annotated[float, Field(...,gt=0, description="Weight of the patient(in kgs)", examples=65.6)]
+    height : Annotated[float, Field(...,gt=0, description="Height of the patient(in metres)", examples=[1.85])]
+    weight : Annotated[float, Field(...,gt=0, description="Weight of the patient(in kgs)", examples=[65.6])]
 
     @computed_field
     @property
@@ -21,7 +21,7 @@ class Patient(BaseModel):
         
     @computed_field
     @property
-    def verdict(self):
+    def verdict(self) -> str:
         if self.bmi < 18.5:
             return "Underweight"
         elif self.bmi < 25:
@@ -47,7 +47,7 @@ def about():
     return {'Message' : "A fully functional api to manage patient's records"}
 
 @app.get('/view')
-def veeiew():
+def view():
     return get_data()
 
 @app.get('/view/{id}')
@@ -71,7 +71,7 @@ def sort_patients(sortby : str = Query(...,description = "Sort on the basis of h
 
 #adding new patient(implementing post request)
 @app.post('/create')
-def create_patient(patient : Patient)
+def create_patient(patient : Patient):
     #load existing data
     data = get_data()
     #check if that patient id already exists
@@ -80,3 +80,4 @@ def create_patient(patient : Patient)
     
     #new patient add to database
     data[patient.id] = patient.model_dump(exclude=['id'])
+    return {'msg' : 'Added successfully'}
