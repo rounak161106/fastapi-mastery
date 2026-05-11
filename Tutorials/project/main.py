@@ -70,3 +70,13 @@ def sort_patients(sortby : str = Query(...,description = "Sort on the basis of h
     return sorted_data
 
 #adding new patient(implementing post request)
+@app.post('/create')
+def create_patient(patient : Patient)
+    #load existing data
+    data = get_data()
+    #check if that patient id already exists
+    if(patient.id in data):
+        raise HTTPException(status_code=400, detail="Patient already exists")
+    
+    #new patient add to database
+    data[patient.id] = patient.model_dump(exclude=['id'])
