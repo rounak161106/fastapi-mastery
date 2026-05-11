@@ -1,8 +1,24 @@
-from fastapi import FastAPI, Path, HTTPException, Query
-#path is used to perform, validation, adding description to the api documentation
+from fastapi import FastAPI, Path, HTTPException, Query #path is used to perform, validation, adding description to the api documentation(similarly the query)
+from pydantic import BaseModel, computed_field
+from typing import Annotated
 import json
 
 app = FastAPI()
+
+class Patient(BaseModel):
+    id : str
+    name : str
+    city : str
+    age : int
+    gender : str
+    height : float
+    weight : float
+
+    @computed_field
+    @property
+    def bmi(self):
+        return self.weight / (self.height**2)
+        
 
 def get_data():
     with open('patients_data.json', 'r') as f:
