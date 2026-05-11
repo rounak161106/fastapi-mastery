@@ -100,7 +100,7 @@ def create_patient(patient : Patient):
 def update_patient(patient_update : PatientUpdate, patient_id : str = Path(..., description="Id of the patient", examples=['P001'])):
     data = get_data()
     if patient_id not in data:
-        raise HTTPException(status_code=400, detail="Patient not found")
+        raise HTTPException(status_code=404, detail="Patient not found")
     this_patient_info = data[patient_id]
     updated_patient_info = patient_update.model_dump(exclude_unset=True)
     for key, value in updated_patient_info.items():
@@ -111,3 +111,6 @@ def update_patient(patient_update : PatientUpdate, patient_id : str = Path(..., 
     this_patient_info = patient_pyd_obj.model_dump(exclude='id')
     data[patient_id] = this_patient_info
     save_data(data)
+    return JSONResponse(status_code=200, content={"Message" : "Patient Updated"})
+
+#deleting patient(implementing delete request)
